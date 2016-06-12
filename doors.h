@@ -14,7 +14,7 @@ class InvalidDoorCommand : public std::exception
 {
 public:
     using std::exception::what;
-    virtual const char *what()
+    virtual const char *what() const throw()
     {
         return "Invalid door state translation.";
     }

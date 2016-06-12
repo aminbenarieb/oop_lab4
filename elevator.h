@@ -24,8 +24,7 @@ enum ElevatorDirection
 class InvalidElevatorCommand : public std::exception
 {
 public:
-    using std::exception::what;
-    virtual const char *what()
+    virtual const char *what() const throw()
     {
         return "Invalid elevator state translation.";
     }

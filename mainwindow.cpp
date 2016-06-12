@@ -27,57 +27,93 @@ MainWindow::~MainWindow()
 
 void MainWindow::setFloorNumber(int floorNumber)
 {
-    qDebug()<<QString("Moved to floor: %1").arg(floorNumber);
+    QString message = QString("Moved to floor: %1").arg(floorNumber);;
+    qDebug()<<message;
+    this->ui->FloorLabel->setText(message);
 }
 void MainWindow::setDirection(ElevatorDirection elevatorDirection)
 {
+    QString message;
     switch(elevatorDirection)
     {
         case DIRECTION_UP:
-            qDebug()<<"Getting up...";
+            message = "Getting up...";
             break;
         case DIRECTION_DOWN:
-            qDebug()<<"Getting down...";
+            message = "Getting down...";
             break;
         default:
-            qDebug()<<"Elevator is stopped.";
+            message = "Elevator is stopped.";
             break;
     }
+    qDebug()<<message;
+    this->ui->statusLabel->setText(message);
 }
 void MainWindow::setDoorState(DoorState doorState)
 {
+    QString message;
     switch(doorState)
     {
         case DOOR_OPEN:
-            qDebug()<<"Door is opened.";
+            message = "Door is opened.";
             break;
         case DOOR_OPENING:
-            qDebug()<<"Door is opening.";
+            message = "Door is opening.";
             break;
         case DOOR_CLOSING:
-            qDebug()<<"Door is closing.";
+            message = "Door is closing.";
             break;
         case DOOR_CLOSED:
-            qDebug()<<"Door is closed.";
+            message = "Door is closed.";
             break;
         default:
             break;
     }
+    qDebug()<<message;
+    this->ui->doorLabel->setText(message);
 }
 
 void MainWindow::on_btnFloor1_clicked()
 {
-    emit floorNumberChanged(1);
+    try
+    {
+        emit floorNumberChanged(1);
+    }
+    catch (std::exception& e)
+    {
+        this->ui->statusLabel->setText( QString("Status: %1").arg(e.what()) );
+    }
 }
 void MainWindow::on_btnFloor2_clicked()
 {
-    emit floorNumberChanged(2);
+    try
+    {
+        emit floorNumberChanged(2);
+    }
+    catch (std::exception& e)
+    {
+        this->ui->statusLabel->setText( QString("Status: %1").arg(e.what()) );
+    }
 }
 void MainWindow::on_btnFloor3_clicked()
 {
-    emit floorNumberChanged(3);
+    try
+    {
+        emit floorNumberChanged(3);
+    }
+    catch (std::exception& e)
+    {
+        this->ui->statusLabel->setText( QString("Status: %1").arg(e.what()) );
+    }
 }
 void MainWindow::on_btnFloor4_clicked()
 {
-    emit floorNumberChanged(4);
+    try
+    {
+        emit floorNumberChanged(4);
+    }
+    catch (std::exception& e)
+    {
+        this->ui->statusLabel->setText( QString("Status: %1").arg(e.what()) );
+    }
 }

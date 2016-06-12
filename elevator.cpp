@@ -41,18 +41,24 @@ int Elevator::getProcessFloorTime() const
 
 void Elevator::move()
 {
-    if (state != ELEVATOR_MOVING || state != ELEVATOR_STANDING)
+    if (state != ELEVATOR_MOVING && state != ELEVATOR_STANDING)
     {
         throw InvalidElevatorCommand();
     }
     state = ELEVATOR_MOVING;
 
     if (targetFloorNumber > currentFloorNumber)
+    {
+        emit directionChanged(DIRECTION_UP);
         currentFloorNumber++;
+    }
     else if (targetFloorNumber < currentFloorNumber)
+    {
+        emit directionChanged(DIRECTION_DOWN);
         currentFloorNumber--;
+    }
 
-//    emit floorChanged(currentFloorNumber);
+    emit floorChanged(currentFloorNumber);
 }
 void Elevator::standWithOpeningDoors()
 {
@@ -62,8 +68,8 @@ void Elevator::standWithOpeningDoors()
     }
     state = ELEVATOR_OPENING;
 
-//    emit directionChanged(DIRECTION_NONE);
-//    emit readyToOpenDoors();
+    emit directionChanged(DIRECTION_NONE);
+    emit readyToOpenDoors();
 
 }
 void Elevator::standWithOpenedDoors()
@@ -82,7 +88,7 @@ void Elevator::standWithClosingDoors()
         throw InvalidElevatorCommand();
     }
     state = ELEVATOR_CLOSING;
-//    emit readyToCloseDoors();
+    emit readyToCloseDoors();
 }
 void Elevator::stand()
 {
@@ -92,6 +98,6 @@ void Elevator::stand()
     }
     state = ELEVATOR_STANDING;
 
-//    emit floorCompleted();
+    emit floorCompleted();
 
 }
