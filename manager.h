@@ -12,10 +12,17 @@ class Manager : public QObject
 public:
     Manager(int, int);
 
+    Elevator& getElevator();
+
 public slots:
     void setFloor(int);
+    void monitorStandingLift();
+    void monitorMovingLift(int);
 
 signals:
+    void getCommand();
+    void elevatorMoved();
+    void elevatorStant();
 
 
 private:
@@ -23,9 +30,6 @@ private:
     QList <int> floorList;
 };
 
-// получаем
-// думает check - monitor
-// мониторит
 
 
 #endif // MANAGER_H
