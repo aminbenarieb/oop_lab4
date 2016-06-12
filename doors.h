@@ -36,7 +36,7 @@ public slots:
     void closing();
 
 signals:
-    void doorStateChanged(DoorState);
+    void stateChanged(DoorState);
     void doorOpened();
     void doorClosed();
 

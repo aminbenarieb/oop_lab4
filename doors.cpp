@@ -14,7 +14,7 @@ void Doors::opening()
         throw InvalidDoorCommand();
 
     this->state = DOOR_OPENING;
-    emit doorStateChanged(this->state);
+    emit stateChanged(this->state);
     QTimer::singleShot(this->processTime, this, SLOT(open()));
 }
 void Doors::open()
@@ -23,7 +23,7 @@ void Doors::open()
         throw InvalidDoorCommand();
 
     this->state = DOOR_OPEN;
-    emit doorStateChanged(this->state);
+    emit stateChanged(this->state);
     emit doorOpened();
 }
 void Doors::closing()
@@ -32,7 +32,7 @@ void Doors::closing()
         throw InvalidDoorCommand();
 
     this->state = DOOR_CLOSING;
-    emit doorStateChanged(this->state);
+    emit stateChanged(this->state);
     QTimer::singleShot(this->processTime, this, SLOT(close()));
 }
 void Doors::close()
@@ -41,6 +41,6 @@ void Doors::close()
         throw InvalidDoorCommand();
 
     this->state = DOOR_CLOSED;
-    emit doorStateChanged(this->state);
+    emit stateChanged(this->state);
     emit doorClosed();
 }

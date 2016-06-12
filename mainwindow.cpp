@@ -14,9 +14,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     connect(this, SIGNAL(floorNumberChanged(int)), &manager, SLOT(setFloor(int)));
-    //    connect(&(manager.getElevator()), SIGNAL(on_floor(int)), this, SLOT(set_floor(int)));
-    //    connect(&(manager.getElevator().get_door()), SIGNAL(door_action(DoorState)), this, SLOT(set_door_condition(DoorState)));
-    //    connect(&(manager.getElevator()), SIGNAL(send_direction(direction)), this, SLOT(set_direction(direction)));
+
+    connect(&(manager.getElevator()), SIGNAL(floorChanged(int)), this, SLOT(setFloorNumber(int)));
+    connect(&(manager.getElevator().getDoors()), SIGNAL(stateChanged(DoorState)), this, SLOT(setDoorState(DoorState)));
+    connect(&(manager.getElevator()), SIGNAL(directionChanged(ElevatorDirection)), this, SLOT(setDirection(ElevatorDirection)));
 }
 
 MainWindow::~MainWindow()

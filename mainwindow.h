@@ -24,7 +24,6 @@ public slots:
 
 signals:
     void floorNumberChanged(int);
-    void send_floor(int);
 
 private slots:
     void on_btnFloor1_clicked();
