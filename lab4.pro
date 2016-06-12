@@ -15,9 +15,9 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    elevatort.cpp \
     doors.cpp \
-    manager.cpp
+    manager.cpp \
+    elevator.cpp
 
 HEADERS  += mainwindow.h \
     doors.h \
